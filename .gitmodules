@@ -1,0 +1,3 @@
+[submodule "lib/pyobdlib"]
+	path = lib/pyobdlib
+	url = https://github.com/tiefpunkt/pyobdlib.git
