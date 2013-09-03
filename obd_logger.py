@@ -1,8 +1,8 @@
-#!/bin/python
+#!/usr/bin/python
 import os, sys, inspect
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parentdir = os.path.dirname(currentdir)
-sys.path.insert(0, parentdir)
+libdir = os.path.join(currentdir,"lib","pyobdlib")
+sys.path.insert(0, libdir)
 
 import platform
 from datetime import datetime
@@ -20,7 +20,7 @@ LOG_SENSORS = ["rpm", "speed", "load", "temp", "intake_air_temp", "engine_time",
 sensor_idxs = []
 
 filetime = datetime.now()
-filename = currentdir + "/" + LOG_DIR+ "/obd-" + filetime.strftime("%Y%m%d_%H%M%S") + ".csv"
+filename = os.path.join(currentdir, LOG_DIR, "obd-" + filetime.strftime("%Y%m%d_%H%M%S") + ".csv")
 log_file = open(filename, "w", 128)
 
 try:
@@ -54,10 +54,8 @@ try:
 			logstr += "," + str(value)
 			results[pyobdlib.sensors.SENSORS[index].shortname] = value
 
-		# Only save if the engine is running (rpm > 0)
-		if results["rpm"] > 0 and results["rpm"] != "NODATA":
-			logstr += "\n"
-			log_file.write(logstr)
+		logstr += "\n"
+		log_file.write(logstr)
 			
 		# Sleep for a moment, as it is REALLY fast
 		time.sleep(5)
@@ -65,6 +63,8 @@ try:
 finally:
 	print "Finished"
 	log_file.close()
+	port.close()
+
 
 
 
