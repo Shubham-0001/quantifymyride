@@ -5,13 +5,9 @@ More details: http://hackingroom.de/wiki/Quantified_Car
 
 Uses pyobdlib via a submodule.
 
-## Setup
+## Get started
 * Get submodules: `git submodule update --init`
 * Connect your ELM 327 device
-* Adjust path to your ELM327 device, and the sensors to be logged, in `obd_logger.py`
-
-	PORTNAME = "/dev/ttyUSB0"
-	LOG_SENSORS = ["rpm", "speed", "load", "temp", "intake_air_temp", "engine_time", "fuel_rail_pressure", "bar_pressure", "control_module_voltage", "accelerator_pos_D" ]
-
+* Adjust path to your ELM327 device, and the sensors to be logged, in `obd_logger.py`, using the variables `PORTNAME` and `LOG_SENSORS`
 * Start the loger: `./obd_logger.py`
 
