@@ -45,7 +45,6 @@ try:
 	
 	while True:
 		timestamp = datetime.now()
-		
 		results = {}
 		results["timestamp"] = str(timestamp)
 		logstr = str(timestamp)
